@@ -1,13 +1,17 @@
-import csv
+import pandas as pd 
 
-meta_file = open('patent_meta.tsv', 'r')
-seq_file = open('patent_sequence.tsv', 'r')
-meta_reader = csv.reader(meta_file, delimiter='\t')
-seq_reader = csv.reader(seq_file, delimiter='\t')
+metaData = pd.read_csv('patent_meta.tsv', delimiter='\t')
+sequence = pd.read_csv('patent_sequence.tsv', delimiter='\t')
 
-print(next(meta_reader))
-next(seq_reader)
-print(next(seq_reader))
+sequence = sequence.rename(columns={'Comma-separated db-specific IDS': 'id'})
+# renaming column name to id for easier access 
+sequence = sequence[ ['id'] + [col for col in sequence.columns if col != 'id'] ]
+# making 'id' the first column since 'id' is the first column in the metadata file
+sequence['file type'] = 'patent sequence'
+metaData['file type'] = 'patent metaData'
+# giving the CSV files a new column for easier organization after merging
 
-meta_file.close()
-seq_file.close()
+duplicates_example = sequence[ sequence['id'] == '75977769' ]
+# creates a list or series of rows that share the id number 75977769
+
+print(" PATENT SEQUENCE FILE:\n ",duplicates_example)
