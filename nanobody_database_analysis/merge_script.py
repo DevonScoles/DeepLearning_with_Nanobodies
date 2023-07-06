@@ -11,7 +11,4 @@ sequence['file type'] = 'patent sequence'
 metaData['file type'] = 'patent metaData'
 # giving the CSV files a new column for easier organization after merging
 
-duplicates_example = sequence[ sequence['id'] == '75977769' ]
-# creates a list or series of rows that share the id number 75977769
-
-print(" PATENT SEQUENCE FILE:\n ",duplicates_example)
+print(sequence[ sequence['id'].duplicated()] )
