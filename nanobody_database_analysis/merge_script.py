@@ -10,5 +10,3 @@ sequence = sequence[ ['id'] + [col for col in sequence.columns if col != 'id'] ]
 sequence['file type'] = 'patent sequence'
 metaData['file type'] = 'patent metaData'
 # giving the CSV files a new column for easier organization after merging
-
-print(sequence[ sequence['id'].duplicated()] )
