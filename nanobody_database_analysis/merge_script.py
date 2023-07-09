@@ -12,8 +12,6 @@ metaData['file type'] = 'patent metaData'
 # giving the CSV files a new column for easier organization after merging
 
 sequence_dups = sequence['id'].duplicated()
-print(sequence.head())
-print(sequence[sequence_dups])
 
 suffixes = {}
 for i,row in sequence.iterrows():
@@ -27,6 +25,14 @@ for i,row in sequence.iterrows():
             suffixes[id_value] = 1
             sequence.at[i,'id'] = f"{id_value}-{suffixes[id_value]}"
 
+sequence = sequence.sort_values('id')
+metaData = metaData.sort_values('id')
 
-sequence.to_csv('modified_sequence.csv', index=False)
+print(sequence.head())
 
+sequence.to_csv('patent_sequence_mod.tsv', index=false)
+
+# merge_test = pd.merge(metaData, sequence, on='id', how='outer')
+
+
+# merged_file.to_csv('merge_test.csv', index=False)
