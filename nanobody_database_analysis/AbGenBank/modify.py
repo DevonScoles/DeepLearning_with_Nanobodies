@@ -1,5 +1,6 @@
 import pandas as pd
 
+# open files for reading/writing
 metaData = pd.read_csv('abgenbank_meta.tsv', delimiter='\t')
 sequence = pd.read_csv('abgenbank_sequence.tsv', delimiter='\t')
 
